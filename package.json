@@ -1,0 +1,36 @@
+{
+  "name": "bootcdn-cli",
+  "version": "0.1.0",
+  "description": "A CLI interface for bootcdn.cn",
+  "main": "index.js",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bdbai/bootcdn-cli.git"
+  },
+  "keywords": [
+    "cli",
+    "bootcdn"
+  ],
+  "author": "bdbai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bdbai/bootcdn-cli/issues"
+  },
+  "homepage": "https://github.com/bdbai/bootcdn-cli#readme",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "cheerio": "^0.22.0",
+    "commander": "^2.9.0",
+    "node-fetch": "^1.6.0",
+    "npmlog": "^4.0.0",
+    "readline-sync": "^1.4.4"
+  }
+}
