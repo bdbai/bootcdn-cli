@@ -1,8 +1,10 @@
+'use strict';
+
 const should = require('chai').should();
 
 const bootcdn = require('../lib/bootcdn');
 
-describe.skip('bootcdn API', function() {
+describe('bootcdn API', function() {
     this.timeout(15000);
 
     it('should eventually return all available libraries', function() {

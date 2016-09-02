@@ -15,9 +15,13 @@
     "type": "git",
     "url": "git+https://github.com/bdbai/bootcdn-cli.git"
   },
+  "bin": {
+    "bootcdn": "./index.js"
+  },
   "keywords": [
     "cli",
-    "bootcdn"
+    "bootcdn",
+    "cdn"
   ],
   "author": "bdbai",
   "license": "MIT",
