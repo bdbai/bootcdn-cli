@@ -41,13 +41,13 @@ describe('libpick', function() {
 
                 options.should.be.an('Array');
                 options.should.have.lengthOf(2);
-                options[0].name.should.equal('node-uuid');
-                options[1].name.should.equal('node-waves');
+                options[0].name.should.equal('node-waves');
+                options[1].name.should.equal('node-uuid');
 
                 return options[0].name;
             });
 
-            result.name.should.equal('node-uuid');
+            result.name.should.equal('node-waves');
             cbInvokedCount.should.equal(1);
 
         });
@@ -56,7 +56,7 @@ describe('libpick', function() {
             const result = libpick.pickLibrary('node', libs,
                 options => '');
 
-            result.name.should.equal('node-uuid');
+            result.name.should.equal('node-waves');
         });
 
         it('should return null if given selection doesn\'t match any library', function() {
