@@ -31,7 +31,6 @@
   "homepage": "https://github.com/bdbai/bootcdn-cli#readme",
   "dependencies": {
     "chalk": "^1.1.3",
-    "cheerio": "^0.22.0",
     "commander": "^2.9.0",
     "node-fetch": "^1.6.0",
     "npmlog": "^4.0.0",

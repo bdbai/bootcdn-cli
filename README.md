@@ -38,7 +38,7 @@ bootcdn jquery@2 bootstrap@3
 ### fetchAllLibraries
 > Returns a Promise to fetch libraries from bootcdn.cn .
 
-## fetchLibrary(library)
+### fetchLibrary(library)
 > Return library information from the specified library name.
 
 ### Example
