@@ -32,6 +32,8 @@ bootcdn -r bootstrap@3
 
 # Find multiple libraries at one time
 bootcdn jquery@2 bootstrap@3
+
+# Check your clipboard!
 ```
 
 ## API
