@@ -8,15 +8,15 @@
     "mocha": "^3.0.2"
   },
   "scripts": {
-    "test": "mocha",
-    "start": "node index.js"
+    "test": "./node_modules/.bin/mocha",
+    "start": "node ./bin/bootcdn"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bdbai/bootcdn-cli.git"
   },
   "bin": {
-    "bootcdn": "./index.js"
+    "bootcdn": "./bin/bootcdn"
   },
   "keywords": [
     "cli",
