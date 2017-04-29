@@ -8,6 +8,7 @@ if (require.main === module) {
         .description('Output library urls from bootcdn.cn.')
         .option('-r, --raw ', 'don\'t wrap urls in HTML tags.')
         .option('-a, --async ', 'add "async" to <script> tag.')
+        .option('-f, --force ', 'reset cache.')
         .parse(process.argv);
 
     cli(commands);
