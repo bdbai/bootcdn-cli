@@ -42,10 +42,13 @@ bootcdn -f
 
 ## API
 ### fetchAllLibraries
-> Returns a Promise to fetch libraries from bootcdn.cn .
+> Returns a Promise to fetch libraries from [BootCDN API](https://api.bootcdn.cn/libraries.json).
 
-### fetchLibrary(library)
-> Return library information from the specified library name.
+### fetchAllLibraryNames
+> Returns a Promise to fetch library names from [BootCDN API](https://api.bootcdn.cn/names.json).
+
+### fetchLibrary(string)
+> Returns a Promise to fetch library information with the specified library name.
 
 ### Example
 ```js
@@ -65,25 +68,42 @@ bootcdn.fetchAllLibraries()
       ... }
 */
 
-bootcdn.fetchLibrary('bootstrap')
+bootcdn.fetchAllLibraryNames()
+    .then(names => console.log(names));
+/* [
+     'twitter-bootstrap',
+     'vue',
+     'react',
+     'react-dom',
+     'd3',
+     ... ]
+*/
+
+bootcdn.fetchLibrary('twitter-bootstrap')
     .then(bootstrap => console.log(bootstrap));
-/* Set {
-      { versionName: '4.0.0-alpha.3',
-        isUnstable: true,
-        urls:
-           [ '//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/css/bootstrap.css',
-             '//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/css/bootstrap.min.css',
-             '//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/js/bootstrap.js',
-             '//cdn.bootcss.com/bootstrap/4.0.0-alpha.3/js/bootstrap.min.js' ] },
-      { versionName: '4.0.0-alpha.2',
-        isUnstable: true,
-        urls:
-           [ '//cdn.bootcss.com/bootstrap/4.0.0-alpha.2/css/bootstrap.css',
-             '//cdn.bootcss.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css',
-             '//cdn.bootcss.com/bootstrap/4.0.0-alpha.2/js/bootstrap.js',
-             '//cdn.bootcss.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js',
-             ...] },
-      ... }
+/* {
+    name: 'twitter-bootstrap',
+    npmName: 'bootstrap',
+    version: '4.1.1',
+    description: 'The most popular front-end framework for developing responsive, mobile first projects on the web.',
+    homepage: 'http://getbootstrap.com/',
+    keywords: [ 'css', 'less', 'mobile-first', 'responsive', 'front-end', 'framework', 'web', 'twitter', 'bootstrap' ],
+    license: 'MIT',
+    repository: { type: 'git', url: 'https://github.com/twbs/bootstrap' },
+    assets: [
+      {
+        version: '4.1.1',
+        files: [
+                   'css/bootstrap-grid.css',
+                   'css/bootstrap-grid.min.css', ... ],
+        urls: [
+                  'https://cdn.bootcss.com/twitter-bootstrap/4.1.1/css/bootstrap-grid.css',
+                  'https://cdn.bootcss.com/twitter-bootstrap/4.1.1/css/bootstrap-grid.min.css', ... ],
+        isUnstable: false
+      },
+      ... ],
+    stars: 127718
+}
 */
 ```
 

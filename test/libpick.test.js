@@ -6,8 +6,8 @@ const bootcdn = require('../lib/bootcdn');
 const libpick = require('../lib/libpick');
 
 let libs = new Map();
-let jqueryCountdown = new Set();
-let bootstrap = new Set();
+let jqueryCountdown = {};
+let vue = {};
 
 describe('libpick', function() {
     this.timeout(15000);
@@ -19,18 +19,18 @@ describe('libpick', function() {
             return bootcdn.fetchLibrary('jquery-countdown');
         }).then(lib => {
             jqueryCountdown = lib;
-            return bootcdn.fetchLibrary('bootstrap');
+            return bootcdn.fetchLibrary('vue');
         }).then(lib => {
-            bootstrap = lib;
+            vue = lib;
         });
     });
 
     describe('pickLibrary', function() {
         it('should return one library when given selection exactly matches', function() {
-            const result = libpick.pickLibrary('bootstrap', libs, () => {
+            const result = libpick.pickLibrary('vue', libs, () => {
                 throw new Error('Shouldn\'t hesitate.');
             });
-            result.name.should.be.equal('bootstrap');
+            result.name.should.be.equal('vue');
         });
 
         it('should confirm library when given selection doesn\'t match exactly', function() {
@@ -40,11 +40,10 @@ describe('libpick', function() {
                 cbInvokedCount++;
 
                 options.should.be.an('Array');
-                options.should.have.lengthOf(2);
-                options[0].name.should.equal('node-waves');
-                options[1].name.should.equal('node-uuid');
+                options.length.should.be.above(2);
+                options.includes('node-waves').should.be.false;
 
-                return options[0].name;
+                return 'node-waves';
             });
 
             result.name.should.equal('node-waves');
@@ -56,7 +55,7 @@ describe('libpick', function() {
             const result = libpick.pickLibrary('node', libs,
                 options => '');
 
-            result.name.should.equal('node-waves');
+            result.name.should.equal('inferno-vnode-flags');
         });
 
         it('should return null if given selection doesn\'t match any library', function() {
@@ -70,62 +69,59 @@ describe('libpick', function() {
         it('should return only latest stable version of jquery-countdown', function() {
             const { latestStable, latestUnstable } = libpick.getLatestVersion(jqueryCountdown);
 
-            latestStable.versionName.should.equal('2.0.2');
+            latestStable.version.should.equal('2.0.2');
             (latestUnstable === undefined).should.be.true;
         });
 
-        it('should return latest stable and unstable version of bootstrap', function() {
-            const { latestStable, latestUnstable } = libpick.getLatestVersion(bootstrap);
+        it('should return latest stable and unstable version of vue', function() {
+            const { latestStable, latestUnstable } = libpick.getLatestVersion(vue);
 
             latestStable.should.be.an('object');
             latestUnstable.should.be.an('object');
         });
     });
 
+    const VERSION = '0.12.16';
     describe('pickVersion', function() {
         it('should return one version when given selection exactly matches', function() {
-            const result = libpick.pickVersion('3.3.7', bootstrap, () => {
+            const result = libpick.pickVersion(VERSION, vue, () => {
                 throw new Error('Shouldn\'t hesitate.');
             });
-            result.versionName.should.be.equal('3.3.7');
+            result.version.should.be.equal(VERSION);
         });
 
         it('should confirm version when given selection doesn\'t match exactly', function() {
             let cbInvokedCount = 0;
 
-            const result = libpick.pickVersion('3', bootstrap, options => {
+            const result = libpick.pickVersion('2', vue, options => {
                 cbInvokedCount++;
 
                 options.should.be.an('Array');
-                options.should.have.lengthOf(16);
-                options[0].versionName.should.equal('3.3.7');
+                options.length.should.be.above(80);
 
-                return options[0].versionName;
+                return options[0].version;
             });
 
-            result.versionName.should.equal('3.3.7');
             cbInvokedCount.should.equal(1);
 
         });
 
         it('should return the first version when confirmation string is empty', function() {
-            const result = libpick.pickVersion('3', bootstrap,
+            const result = libpick.pickVersion('0.12', vue,
                 options => '');
 
-            result.versionName.should.equal('3.3.7');
+            result.version.should.equal(VERSION);
         });
 
         it('should return the first stable version when selection is empty', function() {
-            const result = libpick.pickVersion('', bootstrap,
+            const result = libpick.pickVersion('', vue,
                 options => '');
 
-            result.should.equal(
-                Array.from(bootstrap.values())
-                .find(version => !version.isUnstable));
+            result.should.equal(vue.assets.find(asset => !asset.isUnstable));
         });
 
         it('should return null if given selection doesn\'t match any versions', function() {
-            (libpick.pickVersion('notaversion', bootstrap,
+            (libpick.pickVersion('notaversion', vue,
                 () => { throw new Error('Shouldn\'t hesitate.'); }
             ) === null).should.be.true;
         });
