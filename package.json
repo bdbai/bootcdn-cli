@@ -1,6 +1,6 @@
 {
   "name": "bootcdn-cli",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "A CLI interface for bootcdn.cn",
   "main": "index.js",
   "devDependencies": {
