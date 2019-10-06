@@ -18,6 +18,7 @@
   "bin": {
     "bootcdn": "./bin/bootcdn"
   },
+  "types": "./types/index.d.ts",
   "keywords": [
     "cli",
     "bootcdn",
