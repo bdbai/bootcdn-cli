@@ -4,11 +4,11 @@
   "description": "A CLI interface for bootcdn.cn",
   "main": "index.js",
   "devDependencies": {
-    "chai": "^4.2.0",
-    "mocha": "^6.2.0"
+    "chai": "^4.3.4",
+    "mocha": "^6.2.3"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha",
+    "test": "mocha",
     "start": "node ./bin/bootcdn"
   },
   "repository": {
